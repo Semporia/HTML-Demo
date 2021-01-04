@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>自适应手机端焦点图Banner特效代码</title>
+  <link rel="stylesheet" href="css/Banner.css" type="text/css">
+  <script src="js/Banner.js"></script>
+  <script src="js/jquery.js"></script>
+</head>
+
+<body>
+  <style>
+  @keyframes outer-circle {
+    0% {
+      transform: scale(1)
+    }
+
+    50% {
+      transform: scale(.8)
+    }
+
+    100% {
+      transform: scale(1)
+    }
+  }
+
+  @-webkit-keyframes outer-circle {
+    0% {
+      -webkit-transform: scale(1)
+    }
+
+    50% {
+      -webkit-transform: scale(.8)
+    }
+
+    100% {
+      -webkit-transform: scale(1)
+    }
+  }
+
+  html {
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    -ms-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+    -webkit-transition: all .75s ease;
+    -moz-transition: all .75s ease;
+    -o-transition: all .75s ease;
+    -ms-transition: all .75s ease;
+    transition: all .75s ease;
+  }
+
+  .bonfire-html-onload {
+    -webkit-transform: translateY(-50px);
+    -moz-transform: translateY(-50px);
+    -ms-transform: translateY(-50px);
+    -o-transform: translateY(-50px);
+    transform: translateY(-50px);
+    -webkit-transition: all 0s ease;
+    -moz-transition: all 0s ease;
+    -o-transition: all 0s ease;
+    -ms-transition: all 0s ease;
+    transition: all 0s ease;
+  }
+
+  #bonfire-pageloader {
+    position: absolute;
+    z-index: 99999999999999;
+    width: 100%;
+    height: 1000%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin-top: -50px;
+    background-color: #2ECC71;
+  }
+
+  .bonfire-pageloader-icon {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    margin: 100px 0 0 0;
+    opacity: 1;
+    top: 0;
+    text-align: center;
+    color: #fff;
+  }
+
+  .preload {
+    z-index: 1999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .preload .prezoom .inner-circle, .preload .prezoom .outer-circle {
+    position: absolute;
+    border-radius: 140px;
+    background: #afe4dd;
+    left: 50%;
+    top: 30%
+  }
+
+  .preload .prezoom .inner-circle {
+    width: 30px;
+    height: 30px;
+    margin: -15px
+  }
+
+  .preload .prezoom .outer-circle {
+    width: 140px;
+    height: 140px;
+    margin: -70px;
+    opacity: .3;
+    z-index: 2;
+    animation: outer-circle 2s infinite;
+    -moz-animation: outer-circle 2s infinite;
+    -webkit-animation: outer-circle 2s infinite;
+    -o-animation: outer-circle 2s infinite
+  }
+
+  .preload .percentage {
+    top: 45%;
+    margin-top: 120px;
+  }
+
+  .preload .percentage .num {
+    font-size: 18px;
+    color: #FFF;
+  }
+
+  .bonfire-pageloader-fade {
+    opacity: 0 !important;
+    -webkit-transition: all .75s ease;
+    -moz-transition: all .75s ease;
+    -o-transition: all .75s ease;
+    -ms-transition: all .75s ease;
+    transition: all .75s ease;
+  }
+
+  .bonfire-pageloader-hide {
+    display: none;
+  }
+
+  .bonfire-pageloader-icon-hide {
+    opacity: 0 !important;
+    -webkit-transition: all .25s ease;
+    -moz-transition: all .25s ease;
+    -o-transition: all .25s ease;
+    -ms-transition: all .25s ease;
+    transition: all .25s ease;
+  }
+
+  #bonfire-pageloader svg {
+    -webkit-animation: spin 2s linear infinite;
+    -moz-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    width: 100px;
+    height: 100px;
+  }
+
+  @-webkit-keyframes spin {
+    100% {
+      -webkit-transform: rotate(-360deg);
+    }
+  }
+
+  @-moz-keyframes spin {
+    100% {
+      -moz-transform: rotate(-360deg);
+    }
+  }
+
+  @keyframes spin {
+    100% {
+      -webkit-transform: rotate(-360deg);
+      transform: rotate(-360deg);
+    }
+  }
+  </style>
+  <div id="bonfire-pageloader">
+    <div class="bonfire-pageloader-icon">
+      <div class="preload">
+        <div class="prezoom">
+          <div class="outer-circle"></div>
+          <div class="inner-circle"></div>
+        </div>
+        <div class="percentage"> <span class="num">加載中...</span> </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/pageloader.js" type="text/javascript"></script>
+  <!-- BEGIN PLACE LOADING ICON IN THE MIDDLE OF THE PAGE -->
+  <script>
+  jQuery(window).resize(function() {
+    resizenow();
+  });
+
+  function resizenow() {
+    var browserwidth = jQuery(window).width();
+    var browserheight = jQuery(window).height();
+    jQuery('.bonfire-pageloader-icon').css('right', ((browserwidth - jQuery(".bonfire-pageloader-icon").width()) / 2)).css('top', ((browserheight - jQuery(".bonfire-pageloader-icon").height()) / 2));
+  };
+  resizenow();
+  </script>
+  <div class="Banner">
+    <div class="Banner-container s1">
+      <div class="Banner-wrapper">
+        <div class="Banner-slide"> <a href="" target="_blank"> <img src="image/Banner1.jpg" alt=""></a> </div>
+        <div class="Banner-slide"> <a href="" target="_blank"> <img src="image/Banner2.jpg" alt=""></a> </div>
+        <div class="Banner-slide"> <a href="" target="_blank"> <img src="image/Banner3.jpg" alt=""> </a> </div>
+      </div>
+      <div class="Banner-pagination p1">
+        <span class="Banner-pagination-bullet"></span>
+        <span class="Banner-pagination-bullet"></span>
+        <span class="Banner-pagination-bullet"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+  var myBanner = new Banner('.s1', {
+    loop: false,
+    autoplay: 3000,
+    pagination: '.p1',
+    paginationClickable: true
+  });
+  </script>
+</body>
+
+</html>
