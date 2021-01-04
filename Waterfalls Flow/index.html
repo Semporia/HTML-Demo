@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>响应式网站手机自适应 masonry瀑布流</title>
+        <meta name="keywords" content="×××,dmaku">
+        <meta name="description" content="">
+        <meta name="applicable-device" content="pc,mobile">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Sortable CSS 文件 -->
+        <link rel="stylesheet" href="css/Sortable.css">
+
+        <!-- Sortable Javascript 文件 -->
+        <script type="text/javascript" src="js/Sortable.js"></script>
+        <!-- jQuery库 -->
+        <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+
+    </head>
+    <body>
+
+        <!-- 瀑布流 -->
+        <div class="container">
+            <div class="wrapper">
+                <ul class="sortable__nav nav">
+                    <li> <a data-sjslink="all" class="nav__link"> 全部 </a> </li>
+                    <li> <a data-sjslink="flatty" class="nav__link"> 扁平的 </a> </li>
+                    <li> <a data-sjslink="funny" class="nav__link"> 有趣的 </a> </li>
+                </ul>
+                <div id="sortable" class="sjs-default">
+                    <div data-sjsel="flatty">
+                        <div class="card"> <img class="card__picture" src="images/1.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 1</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Eveniet, eius, asperiores. Incidunt sapiente est quae iure... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="flatty">
+                        <div class="card"> <img class="card__picture" src="images/2.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 2</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Nostrum vitae necessitatibus, dolorem similique vero explicabo... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="funny">
+                        <div class="card"> <img class="card__picture" src="images/3.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 3</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Quo, placeat voluptate, fuga tenetur eos ducimus animi porro... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="flatty">
+                        <div class="card"> <img class="card__picture" src="images/4.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 4</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Fugit doloremque quisquam, obcaecati unde nam est quos... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="flatty">
+                        <div class="card"> <img class="card__picture" src="images/5.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 5</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Esse corporis hic minima nisi reprehenderit... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="funny">
+                        <div class="card"> <img class="card__picture" src="images/6.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 6</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Vel voluptatibus, id, deserunt inventore... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="flatty">
+                        <div class="card"> <img class="card__picture" src="images/7.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 7</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Rerum enim beatae vero culpa, fuga, magni sunt dolores nam... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="flatty">
+                        <div class="card"> <img class="card__picture" src="images/8.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 8</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Repudiandae numquam, blanditiis necessitatibus... </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-sjsel="funny">
+                        <div class="card"> <img class="card__picture" src="images/9.jpg" alt="">
+                            <div class="card-infos">
+                                <h2 class="card__title">Example 9</h2>
+                                <p class="card__text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Consequuntur adipisci voluptatum laborum officiis... </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            document.querySelector('#sortable').sortablejs()
+        </script>
+
+    </body>
+</html>
