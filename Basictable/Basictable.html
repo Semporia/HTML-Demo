@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="zh" data-blockbyte-bs-uid="75314">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0, user-scalable=no">
+  <title>jQuery响应式表格插件basictable </title>
+  <link rel="stylesheet" type="text/css" href="../Basictable/css/demo.css">
+  <link rel="stylesheet" type="text/css" href="../Basictable/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../Basictable/css/basictable.css">
+  <input type="hidden" id="_w_podium">
+  <script type="text/javascript" src="chrome-extension://dbjbempljhcmhlfpfacalomonjpalpko/scripts/inspector.js"></script>
+  <script charset="utf-8" src="chrome-extension://jgphnjokjhjlcnnajmfjlacjnjkhleah/js/btype.js"></script>
+  <script type="text/javascript" charset="utf-8" src="chrome-extension://jgphnjokjhjlcnnajmfjlacjnjkhleah/js/chrome.js"></script>
+  <style class="blockbyte-bs-style" data-name="content">
+  body>div#blockbyte-bs-indicator>div {
+    opacity: 0;
+    pointer-events: none
+  }
+
+  body>iframe#blockbyte-bs-sidebar.blockbyte-bs-visible, body>iframe#blockbyte-bs-overlay.blockbyte-bs-visible {
+    opacity: 1;
+    pointer-events: auto
+  }
+
+  body.blockbyte-bs-noscroll {
+    overflow: hidden !important
+  }
+
+  body>div#blockbyte-bs-indicator>div {
+    position: absolute;
+    transform: translate3d(-24px, 0, 0);
+    top: 0;
+    left: 0;
+    width: 24px !important;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 10px 10px 0;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 2
+  }
+
+  body>div#blockbyte-bs-indicator>div>span {
+    -webkit-mask: no-repeat center/24px;
+    -webkit-mask-image: url(chrome-extension://jdbnofccmhefkmjbkkdkfiicjkgofkdh/img/icon-bookmark.svg);
+    background-color: #ffffff;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+  }
+
+  body>div#blockbyte-bs-indicator[data-pos='right'] {
+    left: auto;
+    right: 0
+  }
+
+  body>div#blockbyte-bs-indicator[data-pos='right']>div {
+    transform: translate3d(24px, 0, 0);
+    left: auto;
+    right: 0;
+    border-radius: 10px 0 0 10px
+  }
+
+  body>div#blockbyte-bs-indicator.blockbyte-bs-fullHeight>div {
+    border-radius: 0
+  }
+
+  body>div#blockbyte-bs-indicator.blockbyte-bs-hover>div {
+    transform: translate3d(0, 0, 0);
+    opacity: 1
+  }
+
+  body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb {
+    height: 100% !important;
+    top: 0 !important
+  }
+
+  body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb>div {
+    background: transparent
+  }
+
+  body>div#blockbyte-bs-indicator[data-pos='left'].blockbyte-bs-has-lsb>div>span {
+    -webkit-mask-position-y: 20px
+  }
+
+  body>iframe#blockbyte-bs-sidebar {
+    width: 250px;
+    max-width: none;
+    height: 0;
+    z-index: 2147483646;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+    speak: none;
+    border: none;
+    display: block !important;
+    transform: translate3d(-250px, 0, 0);
+    transition: width 0s 0.3s, height 0s 0.3s, opacity 0.3s, transform 0.3s
+  }
+
+  body>iframe#blockbyte-bs-sidebar[data-pos='right'] {
+    left: auto;
+    right: 0;
+    transform: translate3d(250px, 0, 0)
+  }
+
+  body>iframe#blockbyte-bs-sidebar.blockbyte-bs-visible {
+    width: calc(100% + 250px);
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+    transition: opacity 0.3s, transform 0.3s
+  }
+
+  body>iframe#blockbyte-bs-sidebar.blockbyte-bs-hideMask {
+    background: none !important
+  }
+
+  body>iframe#blockbyte-bs-sidebar.blockbyte-bs-hideMask:not(.blockbyte-bs-hover) {
+    width: calc(250px + 50px)
+  }
+
+  body>iframe#blockbyte-bs-overlay {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    z-index: 2147483647;
+    border: none;
+    speak: none;
+    background: rgba(0, 0, 0, 0.5) !important;
+    transition: opacity 0.3s
+  }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="page">
+      <h1>基本表格Demo</h1>
+      <h2>基本实现</h2>
+      <p>基本实现使用默认参数设置。表格的响应式效果发生在宽度小于等于568像素的时候。</p>
+      <table id="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Province</th>
+            <th>Sport</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jill Smith</span></td>
+            <td data-th="Age"><span class="bt-content">25</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'4</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Volleyball</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">John Stone</span></td>
+            <td data-th="Age"><span class="bt-content">30</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">5'9</span></td>
+            <td data-th="Province"><span class="bt-content">Ontario</span></td>
+            <td data-th="Sport"><span class="bt-content">Badminton</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jane Strip</span></td>
+            <td data-th="Age"><span class="bt-content">29</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'6</span></td>
+            <td data-th="Province"><span class="bt-content">Manitoba</span></td>
+            <td data-th="Sport"><span class="bt-content">Hockey</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Gary Mountain</span></td>
+            <td data-th="Age"><span class="bt-content">21</span></td>
+            <td data-th="Gender"><span class="bt-content">Mail</span></td>
+            <td data-th="Height"><span class="bt-content">5'8</span></td>
+            <td data-th="Province"><span class="bt-content">Alberta</span></td>
+            <td data-th="Sport"><span class="bt-content">Curling</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">James Camera</span></td>
+            <td data-th="Age"><span class="bt-content">31</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">6'1</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Hiking</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <code class="js">
+        $('#table').basictable();
+      </code>
+      <h2>修改Breakpoint</h2>
+      <p>你可以手动修改每个表格的breakpoint。下面的例子将表格的breakpoint设置为768像素，以适应典型的平板电脑和portrait模式。</p>
+      <table id="table-breakpoint">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Province</th>
+            <th>Sport</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jill Smith</span></td>
+            <td data-th="Age"><span class="bt-content">25</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'4</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Volleyball</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">John Stone</span></td>
+            <td data-th="Age"><span class="bt-content">30</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">5'9</span></td>
+            <td data-th="Province"><span class="bt-content">Ontario</span></td>
+            <td data-th="Sport"><span class="bt-content">Badminton</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jane Strip</span></td>
+            <td data-th="Age"><span class="bt-content">29</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'6</span></td>
+            <td data-th="Province"><span class="bt-content">Manitoba</span></td>
+            <td data-th="Sport"><span class="bt-content">Hockey</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Gary Mountain</span></td>
+            <td data-th="Age"><span class="bt-content">21</span></td>
+            <td data-th="Gender"><span class="bt-content">Mail</span></td>
+            <td data-th="Height"><span class="bt-content">5'8</span></td>
+            <td data-th="Province"><span class="bt-content">Alberta</span></td>
+            <td data-th="Sport"><span class="bt-content">Curling</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">James Camera</span></td>
+            <td data-th="Age"><span class="bt-content">31</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">6'1</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Hiking</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <code class="js">
+        $('#table-breakpoint').basictable({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;breakpoint: 768,<br>
+        });
+      </code>
+      <h2>Force Responsive Off</h2>
+      <p>The script will not force the table to be responsive. The table will only go into responsive mode when the table is actually larger than its parent container. In this demo the parent of table is the div with id page.</p>
+      <table id="table-force-off">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Province</th>
+            <th>Sport</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jill Smith</span></td>
+            <td data-th="Age"><span class="bt-content">25</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'4</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Volleyball</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">John Stone</span></td>
+            <td data-th="Age"><span class="bt-content">30</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">5'9</span></td>
+            <td data-th="Province"><span class="bt-content">Ontario</span></td>
+            <td data-th="Sport"><span class="bt-content">Badminton</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jane Strip</span></td>
+            <td data-th="Age"><span class="bt-content">29</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'6</span></td>
+            <td data-th="Province"><span class="bt-content">Manitoba</span></td>
+            <td data-th="Sport"><span class="bt-content">Hockey</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Gary Mountain</span></td>
+            <td data-th="Age"><span class="bt-content">21</span></td>
+            <td data-th="Gender"><span class="bt-content">Mail</span></td>
+            <td data-th="Height"><span class="bt-content">5'8</span></td>
+            <td data-th="Province"><span class="bt-content">Alberta</span></td>
+            <td data-th="Sport"><span class="bt-content">Curling</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">James Camera</span></td>
+            <td data-th="Age"><span class="bt-content">31</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">6'1</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Hiking</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <code class="js">
+        $('#table-force-off').basictable({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;forceResponsive: false,<br>
+        });
+      </code>
+      <h2>最大高度</h2>
+      <p>Some tables could get very long in responsive. You could set a max-height in mobile where scrolling within the table would happen. Turn on tableWrapper to get a container around the table that toggles an active class. You could also just create your own wrapper and match the breakpoint to do this.</p>
+      <table id="table-max-height" class="max-height">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Province</th>
+            <th>Sport</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jill Smith</span></td>
+            <td data-th="Age"><span class="bt-content">25</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'4</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Volleyball</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">John Stone</span></td>
+            <td data-th="Age"><span class="bt-content">30</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">5'9</span></td>
+            <td data-th="Province"><span class="bt-content">Ontario</span></td>
+            <td data-th="Sport"><span class="bt-content">Badminton</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jane Strip</span></td>
+            <td data-th="Age"><span class="bt-content">29</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'6</span></td>
+            <td data-th="Province"><span class="bt-content">Manitoba</span></td>
+            <td data-th="Sport"><span class="bt-content">Hockey</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Gary Mountain</span></td>
+            <td data-th="Age"><span class="bt-content">21</span></td>
+            <td data-th="Gender"><span class="bt-content">Mail</span></td>
+            <td data-th="Height"><span class="bt-content">5'8</span></td>
+            <td data-th="Province"><span class="bt-content">Alberta</span></td>
+            <td data-th="Sport"><span class="bt-content">Curling</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">James Camera</span></td>
+            <td data-th="Age"><span class="bt-content">31</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">6'1</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Hiking</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <code class="js">
+        $('#table-max-height').basictable({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;tableWrapper: true<br>
+        });
+      </code>
+      <h2>CSS Controls</h2>
+      <h3>Use Media Query Over JS Resize</h3>
+      <p>If you don't want to use the js bind on resize you can use css to control the breakpoint itself. Using basic table to setup the structure itself and copying basictable.css styles into your own media query.</p>
+      <table id="table-no-resize">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Province</th>
+            <th>Sport</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jill Smith</span></td>
+            <td data-th="Age"><span class="bt-content">25</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'4</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Volleyball</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">John Stone</span></td>
+            <td data-th="Age"><span class="bt-content">30</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">5'9</span></td>
+            <td data-th="Province"><span class="bt-content">Ontario</span></td>
+            <td data-th="Sport"><span class="bt-content">Badminton</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jane Strip</span></td>
+            <td data-th="Age"><span class="bt-content">29</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'6</span></td>
+            <td data-th="Province"><span class="bt-content">Manitoba</span></td>
+            <td data-th="Sport"><span class="bt-content">Hockey</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Gary Mountain</span></td>
+            <td data-th="Age"><span class="bt-content">21</span></td>
+            <td data-th="Gender"><span class="bt-content">Mail</span></td>
+            <td data-th="Height"><span class="bt-content">5'8</span></td>
+            <td data-th="Province"><span class="bt-content">Alberta</span></td>
+            <td data-th="Sport"><span class="bt-content">Curling</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">James Camera</span></td>
+            <td data-th="Age"><span class="bt-content">31</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">6'1</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Hiking</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <code class="css">
+        @media only screen and (max-width: 568px) {<br>
+        &nbsp;&nbsp;#table-no-resize thead {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+        &nbsp;&nbsp;}<br><br>
+        &nbsp;&nbsp;#table-no-resize tbody td {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border: none !important;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: block;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vertical-align: top;<br>
+        &nbsp;&nbsp;}<br><br>
+        &nbsp;&nbsp;#table-no-resize tbody td:before {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: attr(data-th) ": ";<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: inline-block;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight: bold;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width: 6.5em;<br>
+        &nbsp;&nbsp;}<br><br>
+        &nbsp;&nbsp;#table-no-resize tbody td.bt-hide {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display: none;<br>
+        &nbsp;&nbsp;}<br>
+        }
+      </code>
+      <code class="js">
+        $('#table-no-resize').basictable({<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;noResize: true,<br>
+        });
+      </code>
+      <h3>Two Axis Styling</h3>
+      <p>Two axis could be styled differently. This does not need to be done through the library itself. The example code will show how to target the first column in desktop and first row in responsive mode.</p>
+      <table id="table-two-axis" class="two-axis">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Height</th>
+            <th>Province</th>
+            <th>Sport</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jill Smith</span></td>
+            <td data-th="Age"><span class="bt-content">25</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'4</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Volleyball</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">John Stone</span></td>
+            <td data-th="Age"><span class="bt-content">30</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">5'9</span></td>
+            <td data-th="Province"><span class="bt-content">Ontario</span></td>
+            <td data-th="Sport"><span class="bt-content">Badminton</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Jane Strip</span></td>
+            <td data-th="Age"><span class="bt-content">29</span></td>
+            <td data-th="Gender"><span class="bt-content">Female</span></td>
+            <td data-th="Height"><span class="bt-content">5'6</span></td>
+            <td data-th="Province"><span class="bt-content">Manitoba</span></td>
+            <td data-th="Sport"><span class="bt-content">Hockey</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">Gary Mountain</span></td>
+            <td data-th="Age"><span class="bt-content">21</span></td>
+            <td data-th="Gender"><span class="bt-content">Mail</span></td>
+            <td data-th="Height"><span class="bt-content">5'8</span></td>
+            <td data-th="Province"><span class="bt-content">Alberta</span></td>
+            <td data-th="Sport"><span class="bt-content">Curling</span></td>
+          </tr>
+          <tr>
+            <td data-th="Name"><span class="bt-content">James Camera</span></td>
+            <td data-th="Age"><span class="bt-content">31</span></td>
+            <td data-th="Gender"><span class="bt-content">Male</span></td>
+            <td data-th="Height"><span class="bt-content">6'1</span></td>
+            <td data-th="Province"><span class="bt-content">British Columbia</span></td>
+            <td data-th="Sport"><span class="bt-content">Hiking</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <code class="css">
+        table.two-axis tr td:first-of-type {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;background: #DFF1F7;<br>
+        }<br><br>
+        @media only screen and (max-width: 568px) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr td:first-of-type,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr:nth-of-type(2n+2) td:first-of-type,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr td:first-of-type:before
+        {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background: #DFF1F7;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color: #FFFFFF;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;table.two-axis tr td:first-of-type {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-bottom: 1px solid #E4EBEB;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        }
+      </code>
+    </div>
+  </div>
+  <script type="text/javascript" src="../Basictable/js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="../Basictable/js/jquery.basictable.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#table').basictable();
+
+    $('#table-breakpoint').basictable({
+      breakpoint: 768
+    });
+
+    $('#table-swap-axis').basictable({
+      swapAxis: true
+    });
+
+    $('#table-force-off').basictable({
+      forceResponsive: true
+    });
+
+    $('#table-no-resize').basictable({
+      noResize: true
+    });
+
+    $('#table-two-axis').basictable();
+
+    $('#table-max-height').basictable({
+      tableWrapper: true
+    });
+  });
+  </script>
+</body>
+
+</html>
