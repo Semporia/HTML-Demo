@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">	
+
+<LINK  href="css/163css.css" type=text/css rel=stylesheet>	
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
+
+<title>TouchSwipe</title>
+
+</head>	
+
+<body>	
+
+
+
+
+
+
+
+<div style="text-align:center; padding-top:30px">左右滑动查看效果</div>
+
+
+
+<div class="box_163css">
+
+    <ul class="line">
+
+        <li><a href="#">新 闻</a></li>
+
+        <li><a href="#">网 页</a></li>
+
+        <li><a href="#">贴 吧</a></li>
+
+        <li><a href="#">知 道</a></li>
+
+        <li><a href="#">音 乐</a></li>
+
+        <li><a href="#">图 片</a></li>
+
+        <li><a href="#">视 频</a></li>
+
+        <li><a href="#">地 图</a></li>
+
+    </ul>
+
+</div>	
+
+<script type="text/javascript">
+
+	$(function(){
+
+		n=$('.line li').size();				
+
+		var wh=100*n+"%";
+
+		$('.line').width(wh);
+
+		var lt=(100/n/4);
+
+		var lt_li=lt+"%";
+
+		$('.line li').width(lt_li);			
+
+		var y=0;
+
+		var w=n/2;						
+
+		$(".line").swipe( {					
+
+			swipeLeft:function() {
+
+				if(y==-lt*w){
+
+					alert('已经到最后页');
+
+				}else{
+
+					y=y-lt;								
+
+					var t=y+"%";									
+
+					$(this).css({'-webkit-transform':"translate("+t+")",'-webkit-transition':'500ms linear'} );	
+
+				}
+
+			},
+
+			swipeRight:function() {
+
+				if(y==0){
+
+					alert('已经到第一页')	
+
+				}else{
+
+					y=y+lt;
+
+					var t=y+"%";
+
+					$(this).css({'-webkit-transform':"translate("+t+")",'-webkit-transition':'500ms linear'} );	
+
+				}
+
+				
+
+			}
+
+		});
+
+	});						
+
+</script>	
+
+	
+
+</body>
+
+</html>
