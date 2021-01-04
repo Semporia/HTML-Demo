@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <title>手机触屏滑动导航Box</title>
+  <style type="text/css">
+  * {
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  ul, ol {
+    list-style: none;
+  }
+
+  .wrap {
+    min-width: 320px;
+    max-width: 768px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .wrapper {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    border-bottom: 1px solid #ccc
+  }
+
+  .wrapper .scroller {
+    position: absolute;
+  }
+
+  .wrapper .scroller li {
+    float: left;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    font-style: none;
+    margin: 0 20px;
+    padding: 20px 20px 20px 0;
+  }
+
+  .wrapper .scroller li:nth-child(1) {
+    padding-left: 20px;
+  }
+
+  .wrapper .scroller li {}
+
+  .wrapper .scroller li span {
+    display: block;
+    border: 1px solid #ccc;
+  }
+
+  h3 {
+    text-align: center;
+    line-height: 60px
+  }
+  </style>
+</head>
+
+<body>
+  <h3>拖拽看看效果</h3>
+  <div class="wrapper" id="wrapper1">
+    <div class="scroller">
+      <ul class="clearfix">
+        <li><span>Box 1</span></li>
+        <li><span>Box 2</span></li>
+        <li><span>Box 3</span></li>
+        <li><span>Box 4</span></li>
+        <li><span>Box 5</span></li>
+        <li><span>Box 6</span></li>
+        <li><span>Box 7</span></li>
+        <li><span>Box 8</span></li>
+        <li><span>Box 9</span></li>
+        <li><span>Box 10</span></li>
+        <li><span>Box 11</span></li>
+        <li><span>Box 12</span></li>
+        <li><span>Box 13</span></li>
+        <li><span>Box 14</span></li>
+        <li><span>Box 15</span></li>
+        <li><span>Box 16</span></li>
+        <li><span>Box 17</span></li>
+        <li><span>Box 18</span></li>
+        <li><span>Box 1</span></li>
+        <li><span>Box 2</span></li>
+        <li><span>Box 3</span></li>
+        <li><span>Box 4</span></li>
+        <li><span>Box 5</span></li>
+        <li><span>Box 6</span></li>
+        <li><span>Box 7</span></li>
+        <li><span>Box 8</span></li>
+        <li><span>Box 9</span></li>
+        <li><span>Box 10</span></li>
+        <li><span>Box 11</span></li>
+        <li><span>Box 12</span></li>
+        <li><span>Box 13</span></li>
+        <li><span>Box 14</span></li>
+        <li><span>Box 15</span></li>
+        <li><span>Box 16</span></li>
+        <li><span>Box 17</span></li>
+        <li><span>Box 18</span></li>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="js/iscroll.js"></script>
+  <script type="text/javascript" src="js/navbarscroll.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    //demo示例一到四 通过lass调取，一句可以搞定，用于页面中可能有多个导航的情况
+    $('.wrapper').navbarscroll();
+
+    //demo示例五 通过id调取
+    /*$('#demo05').navbarscroll({
+    	defaultSelect:6,
+    	endClickScroll:function(obj){
+    		console.log(obj.text())
+    	}
+    });
+	
+    //demo示例六 通过id调取
+    $('#demo06').navbarscroll({
+    	defaultSelect:3,
+    	scrollerWidth:6,
+    	fingerClick:1,
+    	endClickScroll:function(obj){
+    		console.log(obj.text())
+    	}
+    });*/
+  });
+  </script>
+</body>
+
+</html>
