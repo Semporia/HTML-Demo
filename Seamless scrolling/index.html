@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<meta name="wap-font-scale" content="no">
+<meta name="full-screen" content="yes">
+<meta name="x5-fullscreen" content="true">
+<title>文字无缝滚动效果代码</title>
+
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+
+</head>
+
+<body>
+<div class="box">
+	<div class="bcon">
+		<h1><b>领号实时播报</b></h1>
+		<!-- 代码开始 -->
+		<div class="list_lh">
+			<ul>
+				<li>
+					<p><a href="" target="_blank">1000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">2000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">3000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">4000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">5000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">6000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">7000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">8000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">9000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">1000000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">1100000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+				<li>
+					<p><a href="" target="_blank">1200000</a><a href="" target="_blank" class="btn_lh">领号</a><em>获得</em></p>
+					<p><a href="" target="_blank" class="a_blue">网游战江湖公测豪华礼包</a><span>17:28:05</span></p>
+				</li>
+			</ul>
+		</div>
+		<!-- 代码结束 -->
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.list_lh li:even').addClass('lieven');
+})
+$(function(){
+	$("div.list_lh").myScroll({
+		speed:40, //数值越大，速度越慢
+		rowHeight:68 //li的高度
+	});
+});
+// JavaScript Document
+(function($){
+	$.fn.myScroll = function(options){
+	//默认配置
+	var defaults = {
+		speed:40,  //滚动速度,值越大速度越慢
+		rowHeight:24 //每行的高度
+	};
+	
+	var opts = $.extend({}, defaults, options),intId = [];
+	
+	function marquee(obj, step){
+	
+		obj.find("ul").animate({
+			marginTop: '-=1'
+		},0,function(){
+				var s = Math.abs(parseInt($(this).css("margin-top")));
+				if(s >= step){
+					$(this).find("li").slice(0, 1).appendTo($(this));
+					$(this).css("margin-top", 0);
+				}
+			});
+		}
+		
+		this.each(function(i){
+			var sh = opts["rowHeight"],speed = opts["speed"],_this = $(this);
+			intId[i] = setInterval(function(){
+				if(_this.find("ul").height()<=_this.height()){
+					clearInterval(intId[i]);
+				}else{
+					marquee(_this, sh);
+				}
+			}, speed);
+
+			_this.hover(function(){
+				clearInterval(intId[i]);
+			},function(){
+				intId[i] = setInterval(function(){
+					if(_this.find("ul").height()<=_this.height()){
+						clearInterval(intId[i]);
+					}else{
+						marquee(_this, sh);
+					}
+				}, speed);
+			});
+		
+		});
+
+	}
+
+})(jQuery);
+</script>
+</body>
+</html>
