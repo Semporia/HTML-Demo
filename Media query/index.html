@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <style type="text/css">
+  /* 定义 dark 模式的颜色 */
+  @: root {
+    --background-color: #FFFFFF;
+    --text-color: #333333;
+    --link-color: #BB5522;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background-color: #111416;
+      --text-color: #CCCCCC;
+      --link-color: #FF9966;
+    }
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+    color: var(--text-color);
+    background: var(--background-color);
+  }
+  </style>
+  <style type="text/css">
+  .Box{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+
+  }
+  .day {
+    background: #eee;
+    color: black;
+  }
+
+  .night {
+    background: #333;
+    color: white;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .day.dark-scheme {
+      background: #333;
+      color: white;
+    }
+
+    .night.dark-scheme {
+      background: black;
+      color: #ddd;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    .day.light-scheme {
+      background: white;
+      color: #555;
+    }
+
+    .night.light-scheme {
+      background: #eee;
+      color: black;
+    }
+  }
+
+  .day, .night {
+    display: inline-block;
+    padding: 1em;
+    margin: .5em;
+    width: 15em;
+    height: auto;
+    vertical-align: middle;
+  }
+  </style>
+  <title>prefers-color-scheme</title>
+</head>
+
+<body>
+  <div class="Box">
+    <div class="day">Day <br/>(initial)</div>
+    <div class="day light-scheme">Day <br/>(changes in light scheme)</div>
+    <div class="day dark-scheme">Day <br/>(changes in dark scheme)</div> <br>
+    <div class="night">Night <br/>(initial)</div>
+    <div class="night light-scheme">Night <br/>(changes in light scheme)</div>
+    <div class="night dark-scheme">Night <br/>(changes in dark scheme)</div>
+  </div>
+</body>
+
+</html>
