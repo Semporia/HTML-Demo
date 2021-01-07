@@ -351,7 +351,7 @@
     --color-label-danger-border: #cb2431;
     --color-label-orange-text: #c24e00;
     --color-label-orange-border: #f66a0a;
-    --color-input-bg: #fff;
+    --color-input-bg: #FFFFFF;
     --color-input-contrast-bg: #fafbfc;
     --color-input-border: #e1e4e8;
     --color-input-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
@@ -1698,7 +1698,7 @@ ul {
   border: 0;
   outline: 0;
   color: var(--color-text-primary);
-  background-color: var(--color-header-search-bg);
+  background-color: var(--color-input-bg);
 }
 
 .search-container form .search_box .header-search-button {
@@ -1735,7 +1735,8 @@ ul {
   color: var(--color-text-primary);
   font-size: 13px;
   border-right: 1px solid #ccc;
-  border-radius: 30px 0 0 30px
+  border-radius: 30px 0 0 30px;
+  background-color: var(var(--color-input-bg));
 }
 
 .search-container .select-option .list {

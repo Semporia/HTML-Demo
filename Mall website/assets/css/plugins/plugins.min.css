@@ -1541,7 +1541,7 @@ img.mfp-img {
 
 .nice-select {
   -webkit-tap-highlight-color: transparent;
-  background-color: var(--color-header-search-bg);
+  background-color: var(--color-input-bg);
   border-radius: 5px;
   border: 1px solid var(--color-header-search-border);
   -webkit-box-sizing: border-box;
