@@ -1,0 +1,37 @@
+/* CSS 代码 */
+.demo {
+  width: 200px;
+  padding-left: 100px;
+  padding-top: 10px;
+}
+
+.element {
+  width: 200px;
+  padding-top: 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s;
+}
+
+:checked~.element {
+  max-height: 666px;
+}
+
+:checked~.check-out {
+  display: block;
+}
+
+:checked~.check-in {
+  display: none;
+}
+
+.check-in,
+.check-out {
+  color: blue;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.check-out {
+  display: none;
+}
